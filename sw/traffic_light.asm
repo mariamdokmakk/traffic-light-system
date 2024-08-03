@@ -217,10 +217,10 @@ L__interrupt29:
 _automatic:
 
 ;traffic_light.c,45 :: 		void automatic() {
-;traffic_light.c,47 :: 		for (i = 0; i < 15 ; i++) {
+;traffic_light.c,47 :: 		for (i = 0; i <14 ; i++) {
 	CLRF       _i+0
 L_automatic9:
-	MOVLW      15
+	MOVLW      14
 	SUBWF      _i+0, 0
 	BTFSC      STATUS+0, 0
 	GOTO       L_automatic10
@@ -282,7 +282,7 @@ L_automatic15:
 	GOTO       L_automatic15
 	NOP
 	NOP
-;traffic_light.c,47 :: 		for (i = 0; i < 15 ; i++) {
+;traffic_light.c,47 :: 		for (i = 0; i <14 ; i++) {
 	INCF       _i+0, 1
 ;traffic_light.c,56 :: 		}
 	GOTO       L_automatic9
@@ -305,10 +305,10 @@ L_automatic16:
 	GOTO       L_automatic16
 	NOP
 	NOP
-;traffic_light.c,61 :: 		for (i = 0; i <23; i++) {
+;traffic_light.c,61 :: 		for (i = 0; i <22; i++) {
 	CLRF       _i+0
 L_automatic17:
-	MOVLW      23
+	MOVLW      22
 	SUBWF      _i+0, 0
 	BTFSC      STATUS+0, 0
 	GOTO       L_automatic18
@@ -364,11 +364,12 @@ L_automatic23:
 	GOTO       L_automatic23
 	NOP
 	NOP
-;traffic_light.c,61 :: 		for (i = 0; i <23; i++) {
+;traffic_light.c,61 :: 		for (i = 0; i <22; i++) {
 	INCF       _i+0, 1
-;traffic_light.c,70 :: 		}   display(0); Delay_ms(1000);
+;traffic_light.c,70 :: 		}
 	GOTO       L_automatic17
 L_automatic18:
+;traffic_light.c,71 :: 		display(0);  Delay_ms(1000);
 	CLRF       FARG_display_num+0
 	CALL       _display+0
 	MOVLW      11
