@@ -44,31 +44,31 @@ while(INTF_bit){
        }
 void automatic() {
 
-        for (i = 0; i <14 ; i++) {
+        for (i = 0; i <15 ; i++) {
             display(arr[i+8]);//to start count from 15
             if (i <11) {
               s_red = 1; s_yellow = 0; s_green = 0; w_red = 0; w_yellow = 0; w_green = 1;  //red and green
-            } else if (i>=11) {
+            } else{
                s_red = 1; s_yellow = 0; s_green = 0; w_red  = 0; w_yellow = 1;  w_green= 0;
             }
             Delay_ms(1000);
 
         }
 
-       display(0);  Delay_ms(1000);  //there is some delaying when displaying zero in for loop
 
 
-        for (i = 0; i <22; i++) {
+
+        for (i = 0; i <23; i++) {
             display(arr[i]);
             if (i<19) {
                s_red = 0; s_yellow = 0; s_green = 1; w_red = 1; w_yellow = 0; w_green = 0;
-            } else if(i>=19) {
+            } else{
                s_red= 0; s_yellow = 1; s_green = 0;w_red = 1; w_yellow= 0; w_green = 0;
             }
             Delay_ms(1000);
 
         }
-           display(0);  Delay_ms(1000);
+
     }
 
 void main() {

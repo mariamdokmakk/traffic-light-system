@@ -162,35 +162,35 @@ L_interrupt8:
 	NOP
 ;traffic_light.c,37 :: 		s_red = toggle; w_green = toggle; s_green = ~toggle; w_red= ~toggle;
 	BTFSC      _toggle+0, 0
-	GOTO       L__interrupt30
+	GOTO       L__interrupt26
 	BCF        PORTD+0, 0
-	GOTO       L__interrupt31
-L__interrupt30:
+	GOTO       L__interrupt27
+L__interrupt26:
 	BSF        PORTD+0, 0
-L__interrupt31:
+L__interrupt27:
 	BTFSC      _toggle+0, 0
-	GOTO       L__interrupt32
+	GOTO       L__interrupt28
 	BCF        PORTD+0, 5
-	GOTO       L__interrupt33
-L__interrupt32:
+	GOTO       L__interrupt29
+L__interrupt28:
 	BSF        PORTD+0, 5
-L__interrupt33:
+L__interrupt29:
 	COMF       _toggle+0, 0
 	MOVWF      R0+0
 	BTFSC      R0+0, 0
-	GOTO       L__interrupt34
+	GOTO       L__interrupt30
 	BCF        PORTD+0, 2
-	GOTO       L__interrupt35
-L__interrupt34:
+	GOTO       L__interrupt31
+L__interrupt30:
 	BSF        PORTD+0, 2
-L__interrupt35:
+L__interrupt31:
 	BTFSC      R0+0, 0
-	GOTO       L__interrupt36
+	GOTO       L__interrupt32
 	BCF        PORTD+0, 3
-	GOTO       L__interrupt37
-L__interrupt36:
+	GOTO       L__interrupt33
+L__interrupt32:
 	BSF        PORTD+0, 3
-L__interrupt37:
+L__interrupt33:
 ;traffic_light.c,38 :: 		s_yellow = 0; w_yellow = 0;
 	BCF        PORTD+0, 1
 	BCF        PORTD+0, 4
@@ -204,7 +204,7 @@ L_interrupt4:
 L_interrupt2:
 ;traffic_light.c,44 :: 		}
 L_end_interrupt:
-L__interrupt29:
+L__interrupt25:
 	MOVF       ___savePCLATH+0, 0
 	MOVWF      PCLATH+0
 	SWAPF      ___saveSTATUS+0, 0
@@ -217,10 +217,10 @@ L__interrupt29:
 _automatic:
 
 ;traffic_light.c,45 :: 		void automatic() {
-;traffic_light.c,47 :: 		for (i = 0; i <14 ; i++) {
+;traffic_light.c,47 :: 		for (i = 0; i <15 ; i++) {
 	CLRF       _i+0
 L_automatic9:
-	MOVLW      14
+	MOVLW      15
 	SUBWF      _i+0, 0
 	BTFSC      STATUS+0, 0
 	GOTO       L_automatic10
@@ -249,13 +249,9 @@ L_automatic9:
 	BCF        PORTD+0, 3
 	BCF        PORTD+0, 4
 	BSF        PORTD+0, 5
-;traffic_light.c,51 :: 		} else if (i>=11) {
+;traffic_light.c,51 :: 		} else{
 	GOTO       L_automatic13
 L_automatic12:
-	MOVLW      11
-	SUBWF      _i+0, 0
-	BTFSS      STATUS+0, 0
-	GOTO       L_automatic14
 ;traffic_light.c,52 :: 		s_red = 1; s_yellow = 0; s_green = 0; w_red  = 0; w_yellow = 1;  w_green= 0;
 	BSF        PORTD+0, 0
 	BCF        PORTD+0, 1
@@ -264,7 +260,6 @@ L_automatic12:
 	BSF        PORTD+0, 4
 	BCF        PORTD+0, 5
 ;traffic_light.c,53 :: 		}
-L_automatic14:
 L_automatic13:
 ;traffic_light.c,54 :: 		Delay_ms(1000);
 	MOVLW      11
@@ -273,45 +268,27 @@ L_automatic13:
 	MOVWF      R12+0
 	MOVLW      93
 	MOVWF      R13+0
-L_automatic15:
+L_automatic14:
 	DECFSZ     R13+0, 1
-	GOTO       L_automatic15
+	GOTO       L_automatic14
 	DECFSZ     R12+0, 1
-	GOTO       L_automatic15
+	GOTO       L_automatic14
 	DECFSZ     R11+0, 1
-	GOTO       L_automatic15
+	GOTO       L_automatic14
 	NOP
 	NOP
-;traffic_light.c,47 :: 		for (i = 0; i <14 ; i++) {
+;traffic_light.c,47 :: 		for (i = 0; i <15 ; i++) {
 	INCF       _i+0, 1
 ;traffic_light.c,56 :: 		}
 	GOTO       L_automatic9
 L_automatic10:
-;traffic_light.c,58 :: 		display(0);  Delay_ms(1000);  //there is some delaying when displaying zero in for loop
-	CLRF       FARG_display_num+0
-	CALL       _display+0
-	MOVLW      11
-	MOVWF      R11+0
-	MOVLW      38
-	MOVWF      R12+0
-	MOVLW      93
-	MOVWF      R13+0
-L_automatic16:
-	DECFSZ     R13+0, 1
-	GOTO       L_automatic16
-	DECFSZ     R12+0, 1
-	GOTO       L_automatic16
-	DECFSZ     R11+0, 1
-	GOTO       L_automatic16
-	NOP
-	NOP
-;traffic_light.c,61 :: 		for (i = 0; i <22; i++) {
+;traffic_light.c,61 :: 		for (i = 0; i <23; i++) {
 	CLRF       _i+0
-L_automatic17:
-	MOVLW      22
+L_automatic15:
+	MOVLW      23
 	SUBWF      _i+0, 0
 	BTFSC      STATUS+0, 0
-	GOTO       L_automatic18
+	GOTO       L_automatic16
 ;traffic_light.c,62 :: 		display(arr[i]);
 	MOVF       _i+0, 0
 	ADDLW      _arr+0
@@ -323,7 +300,7 @@ L_automatic17:
 	MOVLW      19
 	SUBWF      _i+0, 0
 	BTFSC      STATUS+0, 0
-	GOTO       L_automatic20
+	GOTO       L_automatic18
 ;traffic_light.c,64 :: 		s_red = 0; s_yellow = 0; s_green = 1; w_red = 1; w_yellow = 0; w_green = 0;
 	BCF        PORTD+0, 0
 	BCF        PORTD+0, 1
@@ -331,13 +308,9 @@ L_automatic17:
 	BSF        PORTD+0, 3
 	BCF        PORTD+0, 4
 	BCF        PORTD+0, 5
-;traffic_light.c,65 :: 		} else if(i>=19) {
-	GOTO       L_automatic21
-L_automatic20:
-	MOVLW      19
-	SUBWF      _i+0, 0
-	BTFSS      STATUS+0, 0
-	GOTO       L_automatic22
+;traffic_light.c,65 :: 		} else{
+	GOTO       L_automatic19
+L_automatic18:
 ;traffic_light.c,66 :: 		s_red= 0; s_yellow = 1; s_green = 0;w_red = 1; w_yellow= 0; w_green = 0;
 	BCF        PORTD+0, 0
 	BSF        PORTD+0, 1
@@ -346,8 +319,7 @@ L_automatic20:
 	BCF        PORTD+0, 4
 	BCF        PORTD+0, 5
 ;traffic_light.c,67 :: 		}
-L_automatic22:
-L_automatic21:
+L_automatic19:
 ;traffic_light.c,68 :: 		Delay_ms(1000);
 	MOVLW      11
 	MOVWF      R11+0
@@ -355,38 +327,20 @@ L_automatic21:
 	MOVWF      R12+0
 	MOVLW      93
 	MOVWF      R13+0
-L_automatic23:
+L_automatic20:
 	DECFSZ     R13+0, 1
-	GOTO       L_automatic23
+	GOTO       L_automatic20
 	DECFSZ     R12+0, 1
-	GOTO       L_automatic23
+	GOTO       L_automatic20
 	DECFSZ     R11+0, 1
-	GOTO       L_automatic23
+	GOTO       L_automatic20
 	NOP
 	NOP
-;traffic_light.c,61 :: 		for (i = 0; i <22; i++) {
+;traffic_light.c,61 :: 		for (i = 0; i <23; i++) {
 	INCF       _i+0, 1
 ;traffic_light.c,70 :: 		}
-	GOTO       L_automatic17
-L_automatic18:
-;traffic_light.c,71 :: 		display(0);  Delay_ms(1000);
-	CLRF       FARG_display_num+0
-	CALL       _display+0
-	MOVLW      11
-	MOVWF      R11+0
-	MOVLW      38
-	MOVWF      R12+0
-	MOVLW      93
-	MOVWF      R13+0
-L_automatic24:
-	DECFSZ     R13+0, 1
-	GOTO       L_automatic24
-	DECFSZ     R12+0, 1
-	GOTO       L_automatic24
-	DECFSZ     R11+0, 1
-	GOTO       L_automatic24
-	NOP
-	NOP
+	GOTO       L_automatic15
+L_automatic16:
 ;traffic_light.c,72 :: 		}
 L_end_automatic:
 	RETURN
@@ -416,11 +370,11 @@ _main:
 	BSF        PORTB+0, 6
 	BSF        PORTB+0, 7
 ;traffic_light.c,84 :: 		while(1){
-L_main25:
+L_main21:
 ;traffic_light.c,85 :: 		automatic();
 	CALL       _automatic+0
 ;traffic_light.c,86 :: 		}
-	GOTO       L_main25
+	GOTO       L_main21
 ;traffic_light.c,87 :: 		}
 L_end_main:
 	GOTO       $+0

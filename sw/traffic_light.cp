@@ -35,31 +35,31 @@ while(INTF_bit){
  }
 void automatic() {
 
- for (i = 0; i <14 ; i++) {
+ for (i = 0; i <15 ; i++) {
  display(arr[i+8]);
  if (i <11) {
   PORTD.B0  = 1;  PORTD.B1  = 0;  PORTD.B2  = 0;  PORTD.B3  = 0;  PORTD.B4  = 0;  PORTD.B5  = 1;
- } else if (i>=11) {
+ } else{
   PORTD.B0  = 1;  PORTD.B1  = 0;  PORTD.B2  = 0;  PORTD.B3  = 0;  PORTD.B4  = 1;  PORTD.B5 = 0;
  }
  Delay_ms(1000);
 
  }
 
- display(0); Delay_ms(1000);
 
 
- for (i = 0; i <22; i++) {
+
+ for (i = 0; i <23; i++) {
  display(arr[i]);
  if (i<19) {
   PORTD.B0  = 0;  PORTD.B1  = 0;  PORTD.B2  = 1;  PORTD.B3  = 1;  PORTD.B4  = 0;  PORTD.B5  = 0;
- } else if(i>=19) {
+ } else{
   PORTD.B0 = 0;  PORTD.B1  = 1;  PORTD.B2  = 0; PORTD.B3  = 1;  PORTD.B4 = 0;  PORTD.B5  = 0;
  }
  Delay_ms(1000);
 
  }
- display(0); Delay_ms(1000);
+
  }
 
 void main() {
