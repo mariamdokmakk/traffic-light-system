@@ -14,7 +14,6 @@ char i, units, tens;
 
 //for loop to count down make some uncorrect instructions
 char arr[]={23,22,21,20,19,18,17,16,15,14,13,12,10,9,8,7,6,5,4,3,2,1,0};
-char count=0;
 void display(char num) {
     units = num % 10;
     tens = num / 10;
